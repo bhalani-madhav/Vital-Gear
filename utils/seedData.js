@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Module = require('../models/Module');
 const Permission = require('../models/Permission');
 const Role = require('../models/Role');
+const User = require('../models/User');
 
 // Define system modules
 const MODULES = [
@@ -218,6 +219,51 @@ async function seedRoles(permissionMap) {
 }
 
 /**
+ * Seeds default admin user into the database
+ * @param {Object} roleMap - Map of role names to role documents
+ * @returns {Promise<Object>} Admin user document
+ */
+async function seedDefaultAdmin(roleMap) {
+  try {
+    console.log('Seeding default admin user...');
+    
+    const adminEmail = 'admin@vitalgear.com';
+    const adminPassword = 'Admin@1234';
+    
+    // Check if admin user already exists
+    let adminUser = await User.findByEmail(adminEmail);
+    
+    if (!adminUser) {
+      // Get Admin role
+      const adminRole = roleMap['Admin'];
+      if (!adminRole) {
+        throw new Error('Admin role not found. Please seed roles first.');
+      }
+      
+      // Create admin user
+      adminUser = new User({
+        firstName: 'System',
+        lastName: 'Administrator',
+        email: adminEmail,
+        password: adminPassword,
+        role: adminRole._id,
+        isActive: true
+      });
+      
+      await adminUser.save();
+      console.log(`Created default admin user: ${adminEmail}`);
+    } else {
+      console.log(`Default admin user already exists: ${adminEmail}`);
+    }
+    
+    return adminUser;
+  } catch (error) {
+    console.error('Error seeding default admin user:', error.message);
+    throw error;
+  }
+}
+
+/**
  * Main seeding function that orchestrates the seeding process
  * @returns {Promise<Object>} Object containing seeded data maps
  */
@@ -243,6 +289,32 @@ async function seedRBACData() {
     };
   } catch (error) {
     console.error('Error during RBAC data seeding:', error.message);
+    throw error;
+  }
+}
+
+/**
+ * Complete seeding function that includes RBAC data and default admin user
+ * @returns {Promise<Object>} Object containing all seeded data
+ */
+async function seedAllData() {
+  try {
+    console.log('Starting complete data seeding...');
+    
+    // Seed RBAC data first
+    const rbacData = await seedRBACData();
+    
+    // Seed default admin user
+    const adminUser = await seedDefaultAdmin(rbacData.roles);
+    
+    console.log('Complete data seeding finished successfully!');
+    
+    return {
+      ...rbacData,
+      adminUser
+    };
+  } catch (error) {
+    console.error('Error during complete data seeding:', error.message);
     throw error;
   }
 }
@@ -338,6 +410,8 @@ async function validateRBACData() {
 
 module.exports = {
   seedRBACData,
+  seedAllData,
+  seedDefaultAdmin,
   clearRBACData,
   getSeededRole,
   validateRBACData,

@@ -74,9 +74,9 @@
     - Write tests to verify proper seeding of RBAC data
     - _Requirements: 2.1, 8.5_
 
-- [ ] 5. Authentication Controllers and Routes
+- [x] 5. Authentication Controllers and Routes
 
-  - [ ] 5.1 Implement user registration functionality
+  - [x] 5.1 Implement user registration functionality
 
     - Create registration controller with input validation
     - Add duplicate email checking and user creation logic
@@ -84,7 +84,7 @@
     - Write integration tests for user registration endpoint
     - _Requirements: 1.1, 1.2_
 
-  - [ ] 5.2 Create login and JWT token generation
+  - [x] 5.2 Create login and JWT token generation
     - Implement login controller with credential validation
     - Add JWT token generation and response formatting
     - Create authentication error handling for invalid credentials

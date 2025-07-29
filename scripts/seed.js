@@ -6,7 +6,7 @@
  */
 
 const mongoose = require('mongoose');
-const { seedRBACData, clearRBACData, validateRBACData } = require('../utils/seedData');
+const { seedRBACData, seedAllData, clearRBACData, validateRBACData } = require('../utils/seedData');
 require('dotenv').config();
 
 // Load all models to ensure they are registered
@@ -36,21 +36,26 @@ async function main() {
       await clearRBACData();
       console.log('RBAC data cleared successfully!');
     } else {
-      console.log('\n=== Seeding RBAC Data ===');
-      const result = await seedRBACData();
+      console.log('\n=== Seeding All Data ===');
+      const result = await seedAllData();
       
       console.log('\n=== Seeding Summary ===');
       console.log(`Modules seeded: ${Object.keys(result.modules).length}`);
       console.log(`Permissions seeded: ${Object.keys(result.permissions).length}`);
       console.log(`Roles seeded: ${Object.keys(result.roles).length}`);
+      console.log(`Admin user seeded: ${result.adminUser ? result.adminUser.email : 'None'}`);
       
       console.log('\n=== Validating Data ===');
       const isValid = await validateRBACData();
       
       if (isValid) {
-        console.log('✅ All RBAC data validated successfully!');
+        console.log('✅ All data seeded and validated successfully!');
+        console.log('\n=== Default Admin Credentials ===');
+        console.log('Email: admin@vitalgear.com');
+        console.log('Password: Admin@1234');
+        console.log('⚠️  Please change the default admin password after first login!');
       } else {
-        console.log('❌ RBAC data validation failed!');
+        console.log('❌ Data validation failed!');
         process.exit(1);
       }
     }

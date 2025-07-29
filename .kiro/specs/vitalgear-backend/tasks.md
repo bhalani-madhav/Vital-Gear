@@ -1,6 +1,7 @@
 # Implementation Plan
 
 - [x] 1. Project Setup and Configuration
+
   - Initialize Node.js project with package.json and install required dependencies
   - Create project folder structure following MVC pattern
   - Set up environment configuration with .env file and .gitignore
@@ -8,13 +9,16 @@
   - _Requirements: 7.3, 8.5_
 
 - [ ] 2. Database Models and Schemas
+
   - [x] 2.1 Create RBAC foundation models
+
     - Implement Module, Permission, and Role models with Mongoose schemas
     - Add schema validation and relationships between RBAC entities
     - Create unit tests for RBAC model validation and methods
     - _Requirements: 2.1, 2.2, 2.5_
 
-  - [ ] 2.2 Implement User model with authentication fields
+  - [x] 2.2 Implement User model with authentication fields
+
     - Create User schema with password hashing and role reference
     - Add address subdocument schema and validation
     - Implement password comparison methods and user instance methods
@@ -22,6 +26,7 @@
     - _Requirements: 1.1, 1.2, 6.1, 6.2, 7.1_
 
   - [ ] 2.3 Create Product model with category and variant support
+
     - Implement Product schema with all required fields and enums
     - Add validation for stock quantities, pricing, and product variants
     - Create indexes for efficient product queries
@@ -36,7 +41,9 @@
     - _Requirements: 4.1, 4.2, 4.4, 5.1, 5.2, 5.4_
 
 - [ ] 3. Authentication and Security Infrastructure
+
   - [ ] 3.1 Set up Passport.js JWT strategy
+
     - Configure Passport.js with JWT strategy for token validation
     - Create JWT token generation and validation utilities
     - Implement authentication middleware for protected routes
@@ -51,7 +58,9 @@
     - _Requirements: 1.1, 7.1, 7.4_
 
 - [ ] 4. Role-Based Access Control System
+
   - [ ] 4.1 Create RBAC middleware and permission checking
+
     - Implement permission checking middleware for route protection
     - Create role validation utilities and permission lookup functions
     - Add dynamic permission checking based on user roles
@@ -66,7 +75,9 @@
     - _Requirements: 2.1, 8.5_
 
 - [ ] 5. Authentication Controllers and Routes
+
   - [ ] 5.1 Implement user registration functionality
+
     - Create registration controller with input validation
     - Add duplicate email checking and user creation logic
     - Implement proper error handling for registration failures
@@ -81,7 +92,9 @@
     - _Requirements: 1.3, 1.4_
 
 - [ ] 6. Product Management System
+
   - [ ] 6.1 Create product CRUD controllers
+
     - Implement product listing controller with filtering and pagination
     - Create product detail retrieval by ID with full information
     - Add product creation controller with admin permission checking
@@ -96,7 +109,9 @@
     - _Requirements: 3.3, 3.4, 3.5, 8.3_
 
 - [ ] 7. Shopping Cart Implementation
+
   - [ ] 7.1 Create cart management controllers
+
     - Implement add to cart functionality with product and variant validation
     - Create cart item update controller for quantity modifications
     - Add cart item removal and cart clearing functionality
@@ -111,7 +126,9 @@
     - _Requirements: 4.4, 4.5_
 
 - [ ] 8. Order Processing System
+
   - [ ] 8.1 Implement order creation and processing
+
     - Create order placement controller with cart validation
     - Add stock quantity updates during order creation
     - Implement order total calculation and address validation
@@ -126,7 +143,9 @@
     - _Requirements: 5.3, 5.4, 8.4_
 
 - [ ] 9. User Profile and Address Management
+
   - [ ] 9.1 Implement user profile management
+
     - Create user profile retrieval and update controllers
     - Add profile validation and secure data handling
     - Implement user information modification with proper validation
@@ -141,7 +160,9 @@
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
 - [ ] 10. Administrative Functions
+
   - [ ] 10.1 Implement user management for administrators
+
     - Create admin user listing with role information
     - Add role assignment functionality for user accounts
     - Implement user account status management
@@ -156,7 +177,9 @@
     - _Requirements: 8.4_
 
 - [ ] 11. Error Handling and Validation
+
   - [ ] 11.1 Implement global error handling middleware
+
     - Create centralized error handling with consistent response format
     - Add validation error formatting and user-friendly messages
     - Implement database error handling and mapping
@@ -171,7 +194,9 @@
     - _Requirements: 7.3, 7.4_
 
 - [ ] 12. API Routes and Integration
+
   - [ ] 12.1 Set up Express.js routes and middleware integration
+
     - Create route files for all API endpoints
     - Integrate authentication and RBAC middleware with routes
     - Add CORS configuration and security middleware

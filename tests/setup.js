@@ -5,6 +5,7 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 require("../models/Module");
 require("../models/Permission");
 require("../models/Role");
+require("../models/User");
 
 let mongoServer;
 

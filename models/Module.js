@@ -21,8 +21,7 @@ const moduleSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-// Index for efficient queries
-moduleSchema.index({ name: 1 });
+// Index is already created by unique: true
 
 // Virtual to get permissions associated with this module
 moduleSchema.virtual('permissions', {

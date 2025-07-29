@@ -35,7 +35,7 @@ const permissionSchema = new mongoose.Schema({
 
 // Compound index for efficient queries
 permissionSchema.index({ module: 1, action: 1 });
-permissionSchema.index({ name: 1 });
+// Name index is already created by unique: true
 
 // Virtual to get roles that have this permission
 permissionSchema.virtual('roles', {

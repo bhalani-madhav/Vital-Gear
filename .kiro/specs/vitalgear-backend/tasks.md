@@ -25,7 +25,7 @@
     - Write unit tests for User model validation and authentication methods
     - _Requirements: 1.1, 1.2, 6.1, 6.2, 7.1_
 
-  - [ ] 2.3 Create Product model with category and variant support
+  - [x] 2.3 Create Product model with category and variant support
 
     - Implement Product schema with all required fields and enums
     - Add validation for stock quantities, pricing, and product variants

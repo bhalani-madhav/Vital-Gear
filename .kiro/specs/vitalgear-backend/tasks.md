@@ -8,7 +8,7 @@
   - _Requirements: 7.3, 8.5_
 
 - [ ] 2. Database Models and Schemas
-  - [ ] 2.1 Create RBAC foundation models
+  - [x] 2.1 Create RBAC foundation models
     - Implement Module, Permission, and Role models with Mongoose schemas
     - Add schema validation and relationships between RBAC entities
     - Create unit tests for RBAC model validation and methods

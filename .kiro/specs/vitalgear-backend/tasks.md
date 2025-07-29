@@ -33,7 +33,7 @@
     - Write unit tests for Product model validation and business logic
     - _Requirements: 3.1, 3.2, 3.6_
 
-  - [ ] 2.4 Implement Cart and Order models
+  - [x] 2.4 Implement Cart and Order models
     - Create Cart schema with user reference and item management
     - Implement Order schema with order items and status tracking
     - Add methods for cart calculations and order processing

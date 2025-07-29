@@ -7,6 +7,8 @@ require("../models/Permission");
 require("../models/Role");
 require("../models/User");
 require("../models/Product");
+require("../models/Cart");
+require("../models/Order");
 
 let mongoServer;
 

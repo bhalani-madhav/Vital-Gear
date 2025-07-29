@@ -40,9 +40,9 @@
     - Write unit tests for cart and order model functionality
     - _Requirements: 4.1, 4.2, 4.4, 5.1, 5.2, 5.4_
 
-- [ ] 3. Authentication and Security Infrastructure
+- [x] 3. Authentication and Security Infrastructure
 
-  - [ ] 3.1 Set up Passport.js JWT strategy
+  - [x] 3.1 Set up Passport.js JWT strategy
 
     - Configure Passport.js with JWT strategy for token validation
     - Create JWT token generation and validation utilities
@@ -50,7 +50,7 @@
     - Write unit tests for JWT token handling and validation
     - _Requirements: 1.3, 1.5, 7.2_
 
-  - [ ] 3.2 Implement password security and hashing
+  - [x] 3.2 Implement password security and hashing
     - Create password hashing utilities using bcrypt
     - Add password strength validation middleware
     - Implement secure password comparison methods

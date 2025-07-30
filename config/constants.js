@@ -8,9 +8,21 @@ const CONSTANTS = {
 
   // Product Categories
   PRODUCT_CATEGORIES: {
-    SUPPLEMENTS: 'Supplements',
+    // Supplements subcategories
+    PRE_WORKOUT: 'Pre Workout',
+    POST_WORKOUT: 'Post Workout',
+    PROTEIN: 'Protein',
+    VEGAN_PROTEIN: 'Vegan Protein',
+    MULTI_VITAMINS: 'Multi Vitamins',
+    AYURVEDA: 'Ayurveda',
+    
+    // Food items
+    HIGH_PROTEIN_OATS: 'High Protein Oats',
+    MUESLI: 'Muesli',
+    PROTEIN_BARS: 'Protein Bars',
+    
+    // Other categories
     ACTIVEWEAR: 'Activewear',
-    EQUIPMENT: 'Equipment',
     ACCESSORIES: 'Accessories'
   },
 

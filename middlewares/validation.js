@@ -174,13 +174,38 @@ const validateUserLogin = [
  * Product creation validation
  */
 const validateProductCreation = [
-  validationRules.requiredString('name', 2, 100),
-  validationRules.requiredString('description', 10, 1000),
-  validationRules.number('price', 0.01),
-  validationRules.positiveInteger('stock'),
-  validationRules.enum('category', ['Cardio', 'Strength', 'Flexibility', 'Sports', 'Accessories']),
-  validationRules.optionalString('brand', 50),
-  validationRules.array('images', 0, 10),
+  validationRules.requiredString('name', 2, 200),
+  validationRules.requiredString('description', 10, 2000),
+  validationRules.requiredString('brandName', 2, 100),
+  validationRules.enum('category', [
+    'Pre Workout', 'Post Workout', 'Protein', 'Vegan Protein', 
+    'Multi Vitamins', 'Ayurveda', 'High Protein Oats', 'Muesli', 
+    'Protein Bars', 'Activewear', 'Accessories'
+  ]),
+  validationRules.optionalString('size', 50),
+  body('flavours')
+    .optional()
+    .isArray()
+    .withMessage('Flavours must be an array')
+    .custom((flavours) => {
+      if (flavours && flavours.length > 0) {
+        for (const flavour of flavours) {
+          if (typeof flavour !== 'string' || flavour.trim().length === 0) {
+            throw new Error('Each flavour must be a non-empty string');
+          }
+          if (flavour.length > 50) {
+            throw new Error('Each flavour name cannot exceed 50 characters');
+          }
+        }
+      }
+      return true;
+    }),
+  body('stockQuantity')
+    .isInt({ min: 0 })
+    .withMessage('Stock quantity must be a non-negative integer'),
+  body('price')
+    .isFloat({ min: 0.01 })
+    .withMessage('Price must be greater than 0'),
   handleValidationErrors
 ];
 
@@ -249,11 +274,18 @@ const validateAddress = [
  * Search and filter validation
  */
 const validateSearch = [
-  query('q').optional().isString().withMessage('Search query must be a string'),
-  query('category').optional().isIn(['Cardio', 'Strength', 'Flexibility', 'Sports', 'Accessories']),
+  query('search').optional().isString().withMessage('Search query must be a string'),
+  query('category').optional().isIn([
+    'Pre Workout', 'Post Workout', 'Protein', 'Vegan Protein', 
+    'Multi Vitamins', 'Ayurveda', 'High Protein Oats', 'Muesli', 
+    'Protein Bars', 'Activewear', 'Accessories'
+  ]),
+  query('brandName').optional().isString().withMessage('Brand name must be a string'),
   query('minPrice').optional().isFloat({ min: 0 }).withMessage('Minimum price must be non-negative'),
   query('maxPrice').optional().isFloat({ min: 0 }).withMessage('Maximum price must be non-negative'),
-  query('inStock').optional().isBoolean().withMessage('inStock must be a boolean'),
+  query('inStock').optional().isIn(['true', 'false']).withMessage('inStock must be true or false'),
+  query('sort').optional().isIn(['name', 'price', 'createdAt', 'stockQuantity', 'brandName']).withMessage('Invalid sort field'),
+  query('order').optional().isIn(['asc', 'desc']).withMessage('Order must be asc or desc'),
   ...validationRules.pagination(),
   handleValidationErrors
 ];
